@@ -1,79 +1,62 @@
-# CleanerIL — Business Management Platform
+# CleanerIL
 
-CleanerIL is a web-based management platform for a cleaning-services business. The codebase includes customer and order management, workers, invoices, payments, subscriptions, job sharing/marketplace features, and integrations with external providers.
+CleanerIL is a project I've been working on for a long time, based on my own experience running a cleaning business.
 
-> **Portfolio / security notice:** This repository is a sanitized snapshot prepared for code review and portfolio presentation. It has not been fully security-audited or validated for production deployment. External integrations require your own credentials. Do not use real customer data in a public repository.
+When you run a service business, you quickly realize that doing the actual job is only part of the work. You also need to manage customers, close deals, schedule appointments, send reminders, follow up with people who haven't responded, and remember when existing customers might need your service again.
+
+A lot of this takes time, and it's easy to lose track of things when everything is managed manually.
+
+I started building CleanerIL because I experienced these problems myself and saw an opportunity to make things easier for cleaning businesses.
+
+## What I'm building
+
+The goal is to bring the everyday work of a cleaning business into one place, from the first contact with a customer to completing the job.
+
+The system includes customer and order management, dashboards, reports, and SMS integration. For example, SMS messages can help businesses remind customers about appointments and follow up when needed. Keeping customer history organized can also make it easier to reconnect with returning customers instead of relying on memory alone.
+
+CleanerIL is still a work in progress. I'm continuously improving it based on the problems I'm trying to solve and the experience I've gained while building it.
+
+## The marketplace
+
+One of the ideas I'm most excited about is the marketplace.
+
+Cleaning businesses sometimes turn down jobs because they're too busy, too far away, or simply unable to take them. At the same time, another business nearby might be looking for more work.
+
+I'd like CleanerIL to help connect these businesses. A business could offer a job it can't take, and another business could accept it under agreed terms. The idea is to make it easier to pass work between businesses instead of letting good opportunities go to waste.
+
+I see this as more than just a feature inside a management system. Over time, I want CleanerIL to become a place where cleaning businesses can manage their own work while also finding new opportunities through other businesses.
+
+Of course, building a marketplace brings its own challenges, especially around trust, customer privacy, permissions, and making sure everyone knows who is responsible for each job. These are things that need to be handled carefully as the platform develops.
+
+## The business model
+
+My vision is to make the core management system free to use, so businesses can start using it without having to commit to another monthly expense.
+
+The idea is to grow by making the product genuinely useful and bringing more cleaning businesses onto the platform. As the marketplace develops, there may be opportunities to introduce a fee or commission for jobs transferred between businesses.
+
+I haven't finalized the marketplace's business model yet. I want to build something that provides real value first, and find a model that makes sense for the businesses using it.
 
 ## Technology
 
-- **Backend:** Python, Flask, Flask-SQLAlchemy, Flask-Migrate
-- **UI in this archive:** Flask templates/Jinja, HTML, CSS, and browser-side JavaScript
-- **Database:** SQLite by default; configurable with `DATABASE_URL`
-- **Integrations:** Google OAuth / Google Ads, Google Calendar, SMS provider, Cardcom, and OpenFormat export functionality
+The public version of CleanerIL uses:
 
-**Scope note:** This uploaded archive contains a Flask template-based frontend and vanilla JavaScript. It does not appear to include a React or Next.js application. If a separate React/Next.js frontend exists, it was not included in this archive.
+- **Python and Flask** for the backend.
+- **HTML, CSS, and JavaScript** for the frontend.
+- **A database** for managing application data.
+- **An external SMS service** for customer communication.
 
-## Main areas
+Building the application has involved much more than putting together a user interface. It has meant working through real business workflows, database design, application logic, integrations, and the challenges of managing information across different users and businesses.
 
-- `api/routes/` — page and API routes
-- `api/databases/` — SQLAlchemy models and database operations
-- `api/integrations/` — external integration flows
-- `api/sms_019/` — SMS provider integration
-- `api/openformat/` — OpenFormat export and validation
-- `api/marketplace/` — marketplace and job-sharing functionality
-- `client/pages/` — templates and page assets
-- `client/static/` — CSS, JavaScript, and static assets
-- `migrations/` — Alembic migration scripts
+## Where I want to take it
 
-## Configuration
+I'm putting a lot of time and effort into CleanerIL because I believe it has the potential to become something useful for an industry that could benefit from better tools and better connections between businesses.
 
-1. Use Python 3.11 or a compatible version.
-2. Create and activate a virtual environment.
-3. Install dependencies:
+There is still plenty of work ahead. I want to keep improving the management system, develop the marketplace, explore calendar integrations, and make sure privacy and access control are considered as the platform grows.
 
-   ```bash
-   python -m venv .venv
-   # Windows:
-   .venv\\Scripts\\activate
-   # macOS/Linux:
-   source .venv/bin/activate
+This isn't a finished product, and not every idea described here has been implemented yet. It's an ongoing project built around a problem I've experienced firsthand, and something I genuinely want to see succeed.
 
-   pip install -r requirements.txt
-   ```
+## About this repository
 
-4. Copy `.env.example` to `.env` and configure values for your own environment. Never commit `.env`.
-5. Set a strong, stable `FLASK_SECRET_KEY` and configure only the integrations you intend to use.
-6. Initialize the database/migrations according to your deployment setup.
-7. Start locally:
+This repository contains the public portfolio version of CleanerIL. It showcases the project and its technical direction without being intended as a production-ready release.
 
-   ```bash
-   python cleaneril.py
-   ```
-
-The development server is for local testing only. Use a production WSGI server and appropriate deployment configuration for a real deployment.
-
-## Environment variables
-
-See `.env.example`. All third-party credentials should be supplied through environment variables or a secrets manager, not source code. OAuth redirect URIs must exactly match the URLs configured with the relevant provider.
-
-## Security and privacy changes in this snapshot
-
-- Removed the local SQLite database and IDE/cache artifacts.
-- Removed uploaded/logo image collections that may contain customer-specific assets.
-- Replaced embedded Google/SMS/Twilio credential values with environment-variable lookups.
-- Removed the hard-coded administrator bootstrap account.
-- Replaced a personal contact address with a non-functional example address.
-
-These changes only sanitize the submitted working tree. They **do not erase secrets from any previous Git history** or revoke credentials. If a credential in the original archive is real, rotate/revoke it with the provider before publishing.
-
-## Known review items — do not treat as production-ready
-
-- Manager and employee password handling now uses Werkzeug password hashes. Existing legacy plaintext credentials are upgraded after successful authentication. Apply the included migration (`9f31a2c4d7e8`) before running the updated code against an existing database; verify the migration against a backup first.
-- The password migration and compatibility path have not been validated against a production database or full end-to-end login flow. Treat this as a code change requiring review and testing, not as a production security certification.
-- OAuth state handling and callback behavior need further testing; do not assume the integration flows are production-secure based on this cleanup.
-- Review authorization checks on all sensitive routes, CSRF protections, input validation, rate limits, upload handling, error responses, and logging before any public release or production use.
-- The full application has not been run end-to-end as part of this sanitization. Third-party integrations and external system dependencies have not been tested.
-
-## License
-
-No license was supplied with the archive. Add an appropriate license before granting others permission to reuse this code.
+Some of the features and ideas described above are still under development, and the long-term vision may evolve as I continue working on the project.
