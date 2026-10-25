@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>יצירת חשבון</title>
+    <link rel="stylesheet" href="/static/css/register.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container">
+    <div class="left show" id="llevel-1">
+        <div class="head">
+            <h2>הצטרף לאפליקציה שלנו</h2>
+            <p>
+            הירשם למערכת ניהול לקוחות לעסק שלך בניקוי ריפודים, מזגנים, כדי לנהל בצורה נוחה את הלקוחות          
+            </p>
+            <div class="terms">
+                <p>השימוש באפליקציה היא ללא תשלום למשך 3 חודשים
+                    לאחר מכן 15₪/לחודש
+                </p>
+                <p class="terms-service" onclick='redirect("terms")'>בהתאם לתנאי השימוש</p>
+            </div>
+        </div>
+        <div class="icons">
+            <i class="icon icon-128">{% include "icon/register.svg"%}</i>
+            <i class="icon icon-128">{% include "icon/globe.svg"%}</i>
+            <i class="icon icon-128">{% include "icon/graph.svg"%}</i>
+        </div>
+        <button class="btn-continue" onclick="continueToLevel()">
+            <span>קדימה</span>
+            <i  class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+        </button>
+    </div>
+    <div class="right show" id="rlevel-1">
+        <h1>יצירת חשבון</h1>
+        <form>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-circle-user"></i>
+                    מספר פלאפון אישי (ישמש כפרטי ההתחברות שלך) 
+                </label>
+                <input type="tel" placeholder=" " required class="register-input" style="direction: ltr; text-align: left;" id="onwerPhone" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-user-lock"></i>
+                    צור סיסמה (אנגלית + מספרים - חובה)
+                </label>
+                <input type="password" id="pwd1" placeholder=" " required class="register-input" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-user-lock"></i>
+                    הקש הסיסמה שוב
+                </label>
+                <input type="password" id="pwd2" placeholder=" " required class="register-input" autocomplete="off">
+                <div class="strength">
+                    <div class="strength-bar" id="bar"></div>
+                </div>
+            </div>
+            <div class="accept-terms">
+                <i class="fa-solid fa-circle-info"></i>
+                בהרשמה אני מאשר תנאי שימוש
+            </div>
+            <button class="btn-register" onclick="doRegister(this);event.preventDefault()">
+                <span>צור חשבון</span>
+                <i  class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+            </button>
+            <input type="hidden" id="cXsXrF" value="">
+            <div class="divider">או</div>
+            <button type="button" class="btn-other" onclick="redirect('auth')" >היכנס למערכת</button>
+        </form>
+        <div class="credit">
+            נכתב ונבנה ע"י
+            <a  onclick="_0C0A0ON_(); return false;">אברהם סבן</a>
+        </div>
+    </div>
+        <div class="left" id="llevel-2">
+        <div class="head">
+            <h2>אימות מספר פלאפון</h2>
+            <p>
+                קוד אימות בן 6 ספרות נשלח למספר הפלאפון שהזנת. אנא הזן את הקוד שקיבלת כדי לאמת את מספר הטלפון שלך ולהמשיך בתהליך ההרשמה.          
+            </p>
+        </div>
+        <div class="icons">
+            <i class="icon icon-128">{% include "icon/register.svg"%}</i>
+            <i class="icon icon-128">{% include "icon/globe.svg"%}</i>
+            <i class="icon icon-128">{% include "icon/graph.svg"%}</i>
+        </div>
+        <button class="btn-continue" onclick="continueToLevel()">
+            <span>קדימה</span>
+            <i  class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+        </button>
+    </div>
+    <div class="right" id="rlevel-2">
+        <h1>אימות מספר פלאפון</h1>
+        <form>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-comment-sms"></i>
+                    6 ספרות שקיבלת בהודעת SMS
+                </label>
+                <div class="otp-container" id="otpInputs">
+                    <input type="tel" maxlength="1" class="otp-input" inputmode="numeric" autocomplete="one-time-code">
+                    <input type="tel" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="tel" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="tel" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="tel" maxlength="1" class="otp-input" inputmode="numeric">
+                    <input type="tel" maxlength="1" class="otp-input" inputmode="numeric">
+                </div>
+                <div class="countdown-sms">
+                    <span>הקוד יגיע בעוד</span>
+                    <div class="count-sms" id="counterSms">
+                    </div>
+                </div>
+            </div>
+            <button class="btn-register" onclick="doOtp(this);event.preventDefault()">
+                <span>אמת קוד</span>
+                <i  class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+            </button>
+        </form>
+        <div class="credit">
+            נכתב ונבנה ע"י
+            <a  onclick="_0C0A0ON_(); return false;">אברהם סבן</a>
+        </div>
+    </div>
+    <div class="left" id="llevel-3">
+        <div class="head">
+            <h2>פרטים על העסק</h2>
+            <p>
+                פרטים  על העסק שלך, ישתקף בקבלות ובהזמנות ללקוחות שלך      
+            </p>
+        </div>
+        <div class="icons">
+            <i class="icon icon-128">{% include "icon/house.svg"%}</i>
+        </div>
+        <button class="btn-continue" onclick="continueToLevel()">
+            <span>קדימה</span>
+            <i  class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+        </button>
+    </div>
+    <div class="right" id="rlevel-3">
+        <h1>פרטי העסק</h1>
+        <form>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-square-phone-flip"></i>
+                    מספר עוסק פטור/מורשה
+                </label>
+                <input type="tel" placeholder=" " required class="register-input" id="ownerVATCode" >
+            </div>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-address-card"></i>
+                   שם מלא בעל העסק (עברית בלבד)
+                </label>
+                <input type="text" placeholder=" " required class="register-input" id="onwerName" >
+            </div>
+
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-square-phone-flip"></i>
+                   מספר פאלפון לעסק (אם קיים)
+                </label>
+                <input type="tel" placeholder=" " required class="register-input" id="companyPhone" >
+            </div>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-building"></i>
+                    שם העסק (עד 2 מילים)
+                </label>
+                <input type="text" placeholder=" " required class="register-input" id="companyName" >
+            </div>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-align-left"></i>
+                    תיאור קצר של העסק
+                </label>
+                <input type="text" id="companyDesc" placeholder="לדוגמא: ניקוי מזגנים מקצועי" required class="register-input" >
+            </div>
+            <button type="button" class="btn-register" onclick="doCompany(this);event.preventDefault()">
+                <span>המשך</span>
+                <i class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+            </button>
+        </form>
+        <div class="credit">
+            נכתב ונבנה ע"י
+            <a  onclick="_0C0A0ON_(); return false;">אברהם סבן</a>
+        </div>
+    </div>
+    <div class="left" id="llevel-4">
+        <div class="head">
+            <h2>לוגו של העסק</h2>
+            <p>
+               לוגו העסק יוצג בהזמנות, בקבלות ובמסמכים שתפיק עבור הלקוחות שלך.
+            </p>
+        </div>
+        <div class="icons">
+            <i class="icon icon-128">{% include "icon/house.svg"%}</i>
+        </div>
+        <button class="btn-continue" onclick="continueToLevel()">
+            <span>קדימה</span>
+            <i  class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+        </button>
+    </div>
+    <div class="right" id="rlevel-4">
+        <h1>לוגו של העסק</h1>
+        <form>
+            <div class="input-group">
+                <label>הגדר לוגו (תמונה עד 1 מ"ב)</label>
+                <div class="logo-img">
+                    <img class="logo-img-self" src="/static/images/logo/default_logo.png" alt="company logo" id="logoView">
+                    <i class="fa-solid fa-image edit-logo-img" onclick="setLogo()"></i>
+                    <input type="file" id="setLogo" accept="image/*" style="display:none">
+                </div>
+            </div>
+            <button type="button"  class="btn-register" onclick="doLogo(this);event.preventDefault()">
+                <span>המשך</span>
+                <i class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+            </button>
+        </form>
+        <div class="credit">
+            נכתב ונבנה ע"י
+            <a  onclick="_0C0A0ON_(); return false;">אברהם סבן</a>
+        </div>
+    </div>
+    <div class="left" id="llevel-5">
+        <div class="head">
+            <h2>בחר תוכנית הרשמה</h2>
+            <p>
+               בחר בתוכנית המתאימה לך. ניתן לשנות את התוכנית בכל עת מהגדרות החשבון.
+            </p>
+        </div>
+        <div class="icons">
+            <i class="icon icon-128">{% include "icon/graph.svg"%}</i>
+        </div>
+        <button class="btn-continue" onclick="continueToLevel()">
+            <span>קדימה</span>
+            <i  class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+        </button>
+    </div>
+    <div class="right" id="rlevel-5">
+        <h1>בחר תוכנית הרשמה</h1>
+        <form>
+            <div class="subscription-container">
+                <div class="subscription-section">
+                    <h3>סוג חשבון</h3>
+                    <div class="plan-selector">
+                        <div class="plan-card free" data-subplan="1" onclick="selectPlan(UserAccountSubscription.FREE, this)">
+                            <div class="plan-header">
+                                <h4>חינמי</h4>
+                                <div class="plan-price">
+                                    0
+                                    <span class="plan-price-icon">₪</span>
+                                </div>
+                            </div>
+                            <div class="plan-duration">
+                            </div>
+                            <ul class="plan-features" id="listFreeFeature">
+                            </ul>
+                        </div>
+
+                        <div class="plan-card premium" data-subplan="2" onclick="selectPlan(UserAccountSubscription.PREMIUM, this)">
+                            <div class="plan-badge">גישה מלאה</div>
+                            <div class="plan-header">
+                                <h4>פרימיום</h4>
+                                <div class="plan-price">
+                                    <span id="thePlanPrice">0</span>
+                                    <span class="plan-price-icon">₪</span>
+                                </div>
+                            </div>
+                            <div class="plan-duration">
+                                <div class="billing-switch" role="group" aria-label="תדירות תשלום">
+                                    <button type="button" class="billing-pill active" data-subtype="1" onclick="event.stopPropagation(); selectSubscriptionType(subscriptionType.MONTHLY)">חודשי</button>
+                                    <button type="button" class="billing-pill" data-subtype="2" onclick="event.stopPropagation(); selectSubscriptionType(subscriptionType.YEARLY)">שנתי</button>
+                                </div>
+                            </div>
+                            <ul class="plan-features" id="listPremiumFeature">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn-register" onclick="doSubscription();event.preventDefault()">
+                <span id="continueFromSubscription">המשך</span>
+                <i class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+            </button>
+        </form>
+        <div class="credit">
+            נכתב ונבנה ע"י
+            <a  onclick="_0C0A0ON_(); return false;">אברהם סבן</a>
+        </div>
+    </div>
+
+    <div class="left" id="llevel-6">
+        <div class="head">
+            <h2>סיימת את תהליך ההרשמה!</h2>
+            <p>
+                תהליך ההרשמה הסתיים בהצלחה. המערכת מעבדת את הנתונים והחשבון יופעל תוך זמן קצר
+            </p>
+        </div>
+        <i class="icon icon-128">{% include "icon/finish-register.svg" %}</i>
+        <button class="btn-continue btn-continue-done" onclick="redirect('auth')">
+            <span>לחשבון שלי</span>
+            <i  class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+        </button>
+    </div>
+</div>
+    <div id="toast-container"></div>
+    <div id="confirmModal" class="modal hide">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span id="modalTitle">Confirm Action</span>
+                </div>
+
+                <div class="modal-body">
+                <p id="modalMessage">Are you sure?</p>
+                </div>
+
+                <div class="modal-actions">
+                <button id="btnCancel" class="btn cancel">ביטול</button>
+                <button id="btnConfirm" class="btn confirm">המשך</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/js/protocol.js"></script>
+<script src="/static/js/register.js"></script>
+<script src="/static/js/all.js"></script>
+<script src="/static/js/msg.js"></script>
+<script src="/static/js/cache.js"></script>
+</html>

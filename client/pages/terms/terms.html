@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>תנאי שימוש</title>
+    <style>
+        h3{
+            margin-block-start: 3rem;
+        }
+        body{
+            font-family:Arial;
+            background:#f4f6fb;
+            margin:0;
+            padding:20px;
+        }
+        *{
+            line-height: 15px !important;
+        }
+        .container{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.1);
+            line-height:1.7;
+        }
+        p{
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{ terms|safe }}
+    </div>
+    
+</body>
+</html>

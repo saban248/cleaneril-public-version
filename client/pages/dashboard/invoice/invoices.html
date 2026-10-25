@@ -1,0 +1,42 @@
+<div class="dashboard-page" id="INVOICES">
+    <div class="page-head">
+        <h2>ניהול קבלות</h2>
+    </div>
+    <div class="invoice-header-actions">
+        <div class="actions-filters">
+            <div class="iha-item">
+                <div class="action-search">
+                    <i class="fa-solid fa-circle-xmark" style="display: none;" onclick="closeSearchInput('searchReceipt', this)"></i>
+                    <i class="fa-solid fa-magnifying-glass" onclick="openSearchInput('searchReceipt', this)"></i>
+                    <input class="c-input-fn seacrh-input search-receipt-input"  type="text" placeholder="שם, פאלפון, תאריך" id="searchReceipt" oninput="doSearchClientsLocal(this)">
+                </div>
+            </div>
+            <div class="iha-item">
+                <div class="filter-calendar-invoices">
+                    <span>תאריך</span>
+                    <input type="month" class="input-calendar" id="invoiceDateFrom" onchange="filterInvoices()"/>
+                </div>
+            </div>
+        </div>
+        <div class="actions-others">
+            <div class="iha-item">
+                <i class="fa-solid fa-file-arrow-down btn-icon"></i>
+            </div>
+        </div>
+            
+    </div>
+        
+    <div class="page-body">
+        <div class="cleaneril-list list-invoices" id="listInvoices">
+        </div>
+    </div>
+    <div class="view-invoice" id="viewInvoice">
+        <div class="ce-head">
+            <i class="fa-solid fa-circle-xmark" onclick="closeViewInvoice()"></i>
+        </div>
+        <div class="ce-body">
+            <div id="invoice-template">
+            </div>
+        </div>
+    </div>
+</div>

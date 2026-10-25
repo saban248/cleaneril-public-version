@@ -1,0 +1,209 @@
+
+.page-calendar{
+    margin-right: 15%;
+    margin-left: 15% ;
+}
+
+.main-calendar{
+    display:grid;
+    grid-template-rows:auto 1fr;
+    font-family:system-ui;
+    background: #f9f9f9;
+    row-gap: 10px;
+}
+
+.header-calendar{
+    display:flex;
+    justify-content:right;
+    column-gap: 10px;
+    align-items:center;
+    padding: 10px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.h-calendar-stat, .h-calendar-from-to{
+    display: flex;
+    column-gap: 10px;
+    flex-direction: row;
+}
+
+.h-calendar-from-to{
+    border-left: 1px solid #a4a9b5;
+    padding-left: 10px;
+}
+.from-to-item{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1px;
+}
+
+.from-to-item > span{
+    color: #85888f;
+    font-size: 10px;
+    transform: skew(-10deg);
+}
+
+.from-to-item >div{
+    border: none !important;
+    padding: 0 !important;
+}
+.dispatch-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:5px;
+    padding: 5px;
+}
+.dl1{
+    order: 1;
+}
+.dl2{
+    order: 2;
+}
+
+.calendar-panel,
+.map-panel{
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    min-height: 300px;
+}
+
+#calendar{
+    flex:1;
+    padding:10px;
+}
+
+#map{
+    flex:1;
+}
+
+/* ------ FC ------ */
+.fc{
+    font-size:11px;
+    touch-action: manipulation;
+}
+.fc .fc-daygrid-event{
+    font-size:11px;
+    padding:2px 4px;
+}
+.fc .fc-toolbar-title{
+    font-size:16px;
+}
+
+.fc-highlight{
+    background: rgb(200, 236, 226) !important;
+
+    border-radius:4px;
+}
+.fc-start-bold .fc-daygrid-day-number{
+    font-weight:700;
+    color:#2563eb;
+}
+
+.fc-end-bold .fc-daygrid-day-number{
+    font-weight:700;
+    color:#dc2626 !important;
+}
+
+@media (max-width:1000px){
+
+    .dispatch-layout{
+        grid-template-columns:1fr;
+        grid-template-rows:1fr 1fr;
+        grid-auto-flow: row dense;
+        padding: 1px;
+    }
+    .dl1{
+        order: 2;
+    }
+    .dl2{
+        order: 1;
+        height: 300px;
+    }
+    #calendar{
+        padding: 1px;
+    }
+
+}
+
+
+
+
+/* לבטל לגמרי את Leaflet UI */
+.custom-popup .leaflet-popup-content-wrapper {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+.custom-popup .leaflet-popup-content {
+    margin: 0 !important;
+    width: 150px !important;
+}
+
+.custom-popup .leaflet-popup-tip {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* הכרטיס שלך = שליטה מלאה */
+.order-popup {
+    text-align: right;
+    direction: ltr !important;
+    width: 150px;
+    background: rgba(20, 20, 30, 0.92);
+    color: #fff;
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    font-family: sans-serif;
+}
+
+/* header */
+.order-popup-header {
+    margin-bottom: 8px;
+}
+
+.client-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.client-date {
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+/* body */
+.order-popup-body {
+    font-size: 12px;
+    opacity: 0.85;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* button */
+.order-popup-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order-popup-actions button {
+    background: #1f2937;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.order-popup-actions button:hover {
+    background: #374151;
+}
+

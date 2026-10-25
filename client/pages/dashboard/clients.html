@@ -1,0 +1,96 @@
+<div class="dashboard-page" id="CLIENTS">
+    <div class="page-head">
+        <h2>הזמנות - ניהול  סגירות</h2>
+    </div>
+
+    <div class="page-body">
+        <div id="macs" class="menu-actions-clients">
+            <div class="create-card" onclick="initSelectOrderTypeToCreate()">
+               <i class="fa-solid fa-circle-plus"></i>
+            </div>
+            <i class="fa-solid fa-arrows-rotate btn-r-show-calendar" onclick="reloadOnPageClients()"></i>
+            <div class="action-search">
+                <i class="fa-solid fa-circle-xmark"  onclick="closeSearchClients(this)"></i>
+                <i class="fa-solid fa-magnifying-glass show" onclick="openSearchInput('searchClient', this)"></i>
+                <input class="c-input-fn seacrh-input" type="text" placeholder="שם, פאלפון, תאריך" id="searchClient" oninput="doSearchClientsLocal(this)">
+            </div>
+            <div class="filter-item">
+                <span class="viewFilterSelected" id="viewOrderStatFilter" onclick="switchFilterOptions('mf-cs')">הכל</span>
+                <div class="filter-options" id="mf-cs">
+                    <div class="filter-option" onclick="selectClientsState(StateOrder.DONE, this)" data-s="8"> 
+                       <i class="fa-solid fa-clipboard-check"></i>
+                        <span>הושלם</span>
+                    </div>
+                    <div class="filter-option" onclick="selectClientsState(StateOrder.CLOSED, this)" data-s="2"> 
+                        <i class="fa-solid fa-hourglass-half"></i>
+                        <span>בהמתנה</span>
+                    </div>
+                    <div class="filter-option" onclick="selectClientsState(StateOrder.WAIT, this)" data-s="1"> 
+                        <i class="fa-solid fa-question ac3"></i>
+                        <span>לא נסגר</span>
+                    </div>                    
+                    <div class="filter-option" onclick="selectClientsState(StateOrder.CANCELED, this)" data-s="4"> 
+                        <i class="fa-solid fa-ban ac4"></i>
+                        <span>בוטל</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="view-tabs-clients" id="viewtabs-items">
+                <button class="view-tab-btn active" id="viewtab-1" onclick="switchClientsView(clientsView.ORDERS)">
+                    <i class="fa-solid fa-list"></i>
+                    הכל 
+                </button>
+                <button class="view-tab-btn" id="viewtab-2" onclick="switchClientsView(clientsView.TIMELINE)">
+                    <i class="fa-solid fa-people-group"></i>
+                    לו"ז 
+                </button>
+                <button class="view-tab-btn" id="viewtab-8" onclick="switchClientsView(clientsView.STM)">
+                    <i class="fa-solid fa-globe"></i>
+                    משותף 
+                </button>
+                <button class="view-tab-btn" id="viewtab-4" onclick="switchClientsView(clientsView.TRASH)">
+                    <i class="fa-solid fa-trash"></i>
+                    אשפה 
+                </button>
+            </div>
+        <div class="cleaneril-list list-clients" id="listClients">
+            <i class="icon icon-64" id="iel-orders-main">
+                {% include "icon/empty-list.svg" %}
+            </i>
+        </div>
+        
+        <div class="workers-schedule-container" id="workersScheduleView">
+            <div class="schedule-content" id="scheduleContent">
+                <div class="schedule-empty-state" id="scheduleContentEmpty">
+                    <i class="fa-solid fa-calendar"></i>
+                    <span>אין הזמנות היום</span>
+                </div>
+
+                <div class="schedule-timeline" id="scheduleCTimeline">
+
+                    <div class="schedule-card-slider" id="scsItems">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cleaneril-list list-clients" id="listOrderSTM">
+            <div class="client-report-empty">
+                <span>אין עבודות משותפות</span>
+                <i class="icon icon-48">
+                    {% include "icon/globe.svg"%}
+                </i>
+            </div>
+        </div>
+        <div class="cleaneril-list list-clients" id="listOrdersTrash"></div>
+        
+    <div id="clientMenu" class="client-menu-action">
+        
+    </div>
+    </div>
+    <div class="main-edit-client" id="client-dashboard">  
+    </div>
+    
+</div>
+
+<div id="stateClients" class="calander-clients-menu"></div>

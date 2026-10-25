@@ -1,0 +1,44 @@
+<div class="dashboard-page" id="CALENDAR">
+    <div class="page-head">
+        <h2>לוח שנה - ניהול</h2>
+    </div>
+    <div class="page-body page-calendar">
+        <div class="main-calendar">
+            <div class="header-calendar">
+                <div class="h-calendar-from-to">
+                    <div class="from-to-item">
+                        <span>מתאריך</span>
+                        <div class="c-input-date" type="date" id="calendar-from"></div>
+                    </div>
+                    <div class="from-to-item">
+                        <span>לתאריך</span>
+                        <div class="c-input-date" type="date" id="calendar-to"></div>
+                    </div>
+                </div>
+                <div class="h-calendar-stat">
+                    <div class="action-client sc1 sc-selected" onclick="selectCalendarState(this)" data-s="8">
+                        הושלם
+                    </div>
+                    <div class="action-client sc2 sc-selected" onclick="selectCalendarState(this)" data-s="2">
+                        בהמתנה
+                    </div>
+                    <div class="action-client sc4 sc-selected" onclick="selectCalendarState(this)" data-s="4">
+                        בוטל   
+                    </div>
+                </div>
+            </div>
+            <main class="dispatch-layout">
+                <section class="calendar-panel dl1">
+                    <div id="calendar"></div>
+                </section>
+                <section class="map-panel dl2">
+                    <div id="map"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <div class="page-footer">
+
+    </div>
+
+</div>

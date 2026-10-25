@@ -1,0 +1,10 @@
+Flask
+Flask-Migrate
+Flask-SQLAlchemy
+requests
+Pillow
+python-magic
+docutils
+Markdown
+
+Werkzeug

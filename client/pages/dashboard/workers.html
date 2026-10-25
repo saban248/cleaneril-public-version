@@ -1,0 +1,46 @@
+<div class="dashboard-page" id="WORKERS">
+    <div class="page-head">
+        <h2>עובדים / קבלנים - ניהול</h2>
+        <i class="fa-solid fa-circle-plus create-card" onclick="createEmployee()"></i>
+    </div>
+    <div class="page-body">
+        <div id="maw" class="menu-actions-workers">
+            <div class="action-client ac1"  data-s="8">
+                זמינים
+            </div>
+        </div>
+        <div class="cleaneril-list list-workers">
+            {% for worker in workers %}
+                <div class="worker-item" data-key="{{worker.key}}" id="{{worker.employee_id}}" ondblclick="viewEmployeeDetails('{{worker.employee_id}}')">
+                    <div class="avatar permission-{{worker.permission}}">{{worker.username[0]}}</div>
+                    <div class="content">
+                        <div>
+                            <div class="top">
+                                <span class="name">{{worker.username}}</span>
+                            </div>
+                            <span class="phone">{{worker.phone}}</span>
+                            <div class="bottom">
+                                <span>{{worker.permission | pft}} •</span>
+                                <span>{{worker.profit_sharing}}% •</span>
+                                <span>{% if worker.pay_vat %} ללא מע"מ{%else%} כולל מע"מ{%endif%}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                    <i class="fa-solid fa-bars menu-client" onclick="openMenuWorker(this, '{{worker.employee_id}}')"></i>
+                    </div>
+                </div>
+            {% endfor %}
+            <div id="workerMenu" class="client-menu-action"></div>
+        </div>
+    </div>
+
+    <div class="main-edit-worker" id="worker-editor">
+        <div class="ce-head">
+            <i class="fa-solid fa-circle-xmark" onclick="closeCreateWorker()"></i>
+        </div>
+        <div class="ce-body" id="worker-template">
+        </div>
+    </div>
+</div>

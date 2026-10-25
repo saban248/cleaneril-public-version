@@ -1,0 +1,169 @@
+<div class="manager-dashboard" id="managerDashboard">
+    <div class="md-header">
+        <i class="fa-solid fa-xmark manager-template-close" onclick="closeManagerDashboard()"></i>
+        <h2>
+            דף מנהל:
+            <span id="managerNameTitle"></span>
+        </h2>
+    </div>
+    <div class="md-body">
+        <div class="md-tabs">
+            <i class="md-tab-item md-tab-selected" data-tab="1" onclick="switchManagerTab(MDTabsView.SUMMARY)">כללי</i>
+            <i class="md-tab-item" data-tab="2" onclick="switchManagerTab(MDTabsView.FUNDS)">כספים</i>
+            <i class="md-tab-item" data-tab="4" onclick="switchManagerTab(MDTabsView.ACCOUNT)">חשבון</i>
+            <i class="md-tab-item" data-tab="8" onclick="switchManagerTab(MDTabsView.LOGS)">יומן פעילות</i>
+            <i class="md-tab-item" data-tab="16" onclick="switchManagerTab(MDTabsView.SETTINGS)">הגדרות</i>
+        </div>
+
+        <div class="md-views">
+            <section data-view="1" class="md-view show">
+                <div class="md-company-logo" id="companyLogo"></div>
+                <div class="md-cards">
+                    <div class="md-card-info">
+                        <div class="mdi-head">
+                            <div class="mdi-title">
+                                <span>פרטי מנהל</span>
+                                <div class="md-compnay-approval" id="mdManagerApprov"></div>
+                            </div>
+                        </div>
+                        <div class="mdi-body">
+                            <div class="mdi-infos">
+                                <div class="mdi-info">
+                                    <span>שם מלא</span>
+                                    <span id="managerName"></span>
+                                </div>
+                                <div class="mdi-info">
+                                    <span>פאלפון אישי</span>
+                                    <span id="managerPhone"></span>
+                                </div>
+                                <div class="mdi-info">
+                                    <span>שם משתמש</span>
+                                    <span id="managerUserName"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdi-footer">
+                            <div class="mdi-actions">
+                                <button id="doApprovManager" type="button" class="mdi-actions-btn mdci" title="סמן כמאומת" onclick="doApprovAssets(2)">
+                                    <i class="fa-solid fa-house-circle-check"></i>
+                                    <span>סמן כמאומת</span>
+                                    
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="md-card-info">
+                        <div class="mdi-head">
+                            <div class="mdi-title">
+                                <span>פרטי העסק</span>
+                                <div class="md-compnay-approval" id="mdCompApprov"></div>
+                            </div>
+                        </div>
+                        <div class="mdi-body">
+                            <div class="mdi-infos">
+                                <div class="mdi-info">
+                                    <span>שם</span>
+                                    <span id="companyName"></span>
+                                </div>
+                                <div class="mdi-info">
+                                    <div class="mdi-info">
+                                        <span>מעמד העסק</span>
+                                        <span id="companyVAT"></span>
+                                    </div>
+                                </div>
+                                <div class="mdi-info">
+                                    <div class="mdi-info">
+                                        <span>מספר פאלפון</span>
+                                        <span id="companyPhone"></span>
+                                    </div>
+                                </div>
+                                <div class="mdi-info">
+                                    <div class="mdi-info">
+                                        <span>מייל</span>
+                                        <span id="companyEmail"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdi-footer">
+                            <div class="mdi-actions">
+                                <button id="doApprovCompany" type="button" class="mdi-actions-btn mdci" title="סמן כמאומת" onclick="doApprovAssets(1)">
+                                    <i class="fa-solid fa-house-circle-check"></i>
+                                    <span>סמן כמאומת</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-card-info">
+                        <div class="mdi-head">
+                            <div class="mdi-title">
+                                <span>פעילות</span>
+                            </div>
+                        </div>
+                        <div class="mdi-body">
+                            <div class="mdi-infos">
+                                <div class="mdi-info">
+                                    <span>כניסה אחרונה</span>
+                                    <span id="lastManagerActivity"></span>
+                                </div>
+                                <div class="mdi-info">
+                                    <span>לקוחות שנסגרו</span>
+                                    <span id="closeClientToday"></span>
+                                </div>
+                                <div class="mdi-info">
+                                    <span>רווחים גולמיים</span>
+                                    <span id="incomeMoneyToady"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-card-info">
+                        <div class="mdi-head">
+                            <div class="mdi-title">
+                                <span>עובדים</span>
+                            </div>
+                        </div>
+                        <div class="mdi-body">
+                            <div class="mdi-infos">
+                                <div class="mdi-info">
+                                    <span>סה"כ עובדים</span>
+                                    <span id="summaryCountWorkers"></span>
+                                </div>
+                                <div class="mdi-info">
+                                    <span>תשלום באחוזים</span>
+                                    <span id="companyProfitSharing"></span>
+                                </div>
+                                <div class="mdi-info">
+                                    <span>פעילים</span>
+                                    <span id="compkanyActiveEmployees"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section data-view="2" class="md-view">
+                <h1>כספים</h1>
+            </section>
+
+            <section data-view="4" class="md-view">
+                <h1>חשבון</h1>
+            </section>
+
+            <section data-view="8" class="md-view">
+                <h1>פעילות חשבון מנהל</h1>
+            </section>
+
+            <section data-view="16" class="md-view">
+                <h1>הגדרות חשבון</h1>
+            </section>
+        </div>
+    </div>
+    <div class="md-footer">
+
+    </div>
+    
+</div>
+

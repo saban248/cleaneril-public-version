@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>{{application_name}}</title>
+    <link rel="stylesheet" href="/static/css/manager.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/register.css">
+    <link rel="stylesheet" href="/static/css/all.css">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="container">
+    <div class="left show" id="llevel-1">
+        <div class="head login-head">
+            <i class="icon icon-256 cleaneril-logo w">
+                {% include "icon/logo.svg"%}
+            </i>
+            <p>
+             מערכת ניהול לקוחות לעסק שלך בניקוי ריפודים, מזגנים, כדי לנהל בצורה נוחה את הלקוחות          
+            </p>
+            <div class="terms">
+                <p>השימוש באפליקציה היא ללא תשלום למשך 3 חודשים
+                    לאחר מכן 15₪/לחודש
+                </p>
+                <p class="terms-service" onclick='redirect("terms")'>בהתאם לתנאי השימוש</p>
+            </div>
+        </div>
+        <div class="icons">
+            <i class="icon icon-128">{% include "icon/dj.svg"%}</i>
+            <i class="icon icon-128">{% include "icon/connection.svg"%}</i>
+            <i class="icon icon-128">{% include "icon/love.svg"%}</i>
+        </div>
+    </div>
+    <div class="right show" id="rlevel-1">
+        <h1>כניסה למערכת </h1>
+        <form>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-circle-user"></i>
+                    מספר פלאפון
+                </label>
+                <input type="tel" placeholder=" " required class="register-input" id="phone" autocomplete="off" style="direction: ltr;">
+            </div>
+            <div class="input-group">
+                <label>
+                    <i class="fa-solid fa-user-lock"></i>
+                   סיסמה להזדהות
+                </label>
+                <input type="password" id="password" placeholder=" " required class="register-input" autocomplete="off">
+            </div>
+            <button class="btn-register" onclick="event.preventDefault();doLogin(this)">
+                <span>התחבר</span>
+                <i  class="fa-solid fa-circle-notch fa-spin registerLoad" style="display: none;"></i>
+            </button>
+            <input type="hidden" id="cXsXrF" value="">
+            <div class="divider">או</div>
+            <button type="button" class="btn-other" onclick="redirect('create_account')" >הירשם לאפליקציה</button>
+        </form>
+        <div class="credit">
+            נכתב ונבנה ע"י
+            <a href="#" onclick="_0C0A0ON_()">אברהם סבן</a>
+        </div>
+    </div>
+    <div id="toast-container"></div>
+        <div id="confirmModal" class="modal hide">
+    <div class="modal-box">
+        <div class="modal-header">
+            <span id="modalTitle">Confirm Action</span>
+            </div>
+
+            <div class="modal-body">
+            <p id="modalMessage">Are you sure?</p>
+            </div>
+
+            <div class="modal-actions">
+            <button id="btnCancel" class="btn cancel">ביטול</button>
+            <button id="btnConfirm" class="btn confirm">המשך</button>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="/static/js/protocol.js"></script>
+<script src="/static/js/image-upload.js"></script>
+<script src="/static/js/manager.js"></script>
+<script src="/static/js/auth.js"></script>
+<script src="/static/js/manager-dashboard.js"></script>
+<script src="/static/js/all.js"></script>
+<script src="/static/js/cache.js"></script>
+<script src="/static/js/msg.js"></script>
+<script src="/static/js/register.js"></script>
+</html>

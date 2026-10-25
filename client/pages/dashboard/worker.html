@@ -1,0 +1,133 @@
+{% macro render_employee(worker, editor=False) %}
+<div class="worker-card show" {% if editor %}id="the-worker-card"{% endif %} data-ci="{{worker.employee_id}}">
+    <div class="worker-head">
+        <div class="worker-h-title">
+            <img src="/static/images/logo/default_logo.png">
+            <div class="dcompany">
+                <span id="dc1">כרטיס קבלן / עובד</span>
+                <div class="cd-calls">
+                    <div>ניהול:<i class="fa-solid fa-phone-flip" ></i>
+                        <span>{{company.company_phone}}</span>
+                    </div>
+                    <div><i class="fa-solid fa-envelope"></i>
+                        <span>{{company.company_email}}</span>
+                    </div>
+                </div>
+                <span id="dc2">{{company.company_name}} • {{company.company_description}}</span>
+            </div>
+        </div>
+        <div class="worker-details">
+            <div class="cd-item">
+                <div>
+                    <i class="fa-regular fa-user"></i>
+                   <span>שם מלא עובד</span>
+                </div>
+                {% if not editor %}
+                    <span class="cd-name">{{worker.username}}</span>
+                {%else%}
+                    <input class="c-input-fn" type="text" id="wname" placeholder="שם מלא" value="{{worker.username}}">
+                {%endif%}
+            </div>
+            <div class="cd-item">
+                <div>
+                    <i class="fa-solid fa-lock"></i>
+                    <span>סיסמת גישה</span>
+                </div>
+                {% if not editor %}
+                    <span class="cd-name">{{worker.password}}</span>
+                {%else%}
+                    <input class="c-input-fn" type="text" id="wpassword" placeholder="סיסמה" value="{{worker.password}}">
+                {%endif%}
+            </div>
+            <div class="cd-item">
+                <div>
+                    <i class="fa-solid fa-square-phone-flip"></i>
+                    <span>מספר פלאפון</span>
+                </div>
+                {% if not editor %}
+                    <span class="cd-name">{{worker.phone}}</span>
+                {%else%}
+                    <input class="c-input-fn" type="tel" id="wphone" style="direction: ltr;" placeholder="פלאפון" value="{{worker.phone}}">
+                {%endif%}
+            </div>
+            <div class="cd-item">
+                <div>
+                    <i class="fa-regular fa-id-card"></i>
+                    <span>מספר תעודת זהות</span>
+                </div>
+                {% if not editor %}
+                    <span class="cd-name">{{worker.idc}}</span>
+                {%else%}
+                    <input class="c-input-fn" type="tel" id="widc" placeholder="תעודת זהות" value="{{worker.idc}}">
+                {%endif%}
+            </div>
+            <div class="cd-item worker-permission">
+                <div>
+                    <i class="fa-regular fa-id-card"></i>
+                    <span>הרשאות</span>
+                </div>
+                <div class="main-permissions">
+                    <div class="permissions">
+                        <div class="permission-item" id="VIEW" onclick="setPermissionWorker(this, '{{editor}}')">
+                            <i class="fa-solid fa-eye {% if worker|eper(1)%}permission-selected {%elif not editor%}permission-dis{%endif%}"></i>
+                        </div>
+                        <div class="permission-item" id="EDIT" onclick="setPermissionWorker(this, '{{editor}}')">
+                            <i class="fa-solid fa-file-pen {% if worker|eper(2)%}permission-selected {%elif not editor%}permission-dis{%endif%}"></i>
+                        </div>
+                        <div class="permission-item" id="ADMIN" onclick="setPermissionWorker(this, '{{editor}}')">
+                            <i class="fa-solid fa-user-tie {% if worker|eper(4)%}permission-selected {%elif not editor%}permission-dis{%endif%}"></i>
+                        </div>
+
+                    </div>
+                    <div class="about-permission" id="infoPer">
+                        <i class="fa-solid fa-circle-info icon-about"></i>
+                        <span class="i-per {% if worker|eper(1)%}show {%endif%}" id="iVIEW">העובד יכול לצפות בלבד בפרטי הלקוח, ללא אפשרויות נוספות</span>
+                        <span class="i-per {% if worker|eper(2)%}show {%endif%}" id="iEDIT">העובד יכול לערוך את פרטי הלקוחות שאליהם הוא שוייך</span>
+                        <span class="i-per {% if worker|eper(4)%}show {%endif%}" id="iADMIN">העובד מקבל הרשאות כמנהל, כדי לצפות, לערוך, למחוק, לשנות ולהוסיף ברשימת הלקוחות של המערכת </span>
+                    </div>
+                </div>
+            </div>
+            <div class="cd-item">
+                <div>
+                    <i class="fa-solid fa-coins"></i>
+                    <span>תשלום לקבלן באחוזים</span>
+                </div>
+                {% if not editor %}
+                    <span class="cd-name">{{worker.profit_sharing}}%</span>
+                {% else %}
+                    <input class="c-input-fn" type="tel" id="wps" placeholder="50% / 60%" value="{{worker.profit_sharing}}">
+                {% endif %}
+            </div>
+            <div class="cd-item">
+                <div>
+                    <i class="fa-solid fa-receipt"></i>
+                    <span>משתתף במע"מ (8%)</span>
+                </div>
+                {% if not editor %}
+                    <span class="cd-name">{% if worker.pay_vat %} כן {%else%}לא{%endif%}</span>
+                {% else %}
+                    <input class="checkbox" type="checkbox" id="wpvat"  value="{{worker.pvat}}">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="worker-body"></div>
+    <div class="worker-footer {% if not editor %} disable {%endif%}">
+        <div class="worker-action">
+            {% if editor%}
+            <button type="button" class="worker-btn" onclick="publishWorker('{{worker.employee_id}}')">
+                <span>שמירה</span>
+            </button>
+            {%else%}
+            <button type="button" class="worker-btn" onclick="closeCreateWorker()">
+                <span>סגירה</span>
+            </button>
+            {%endif%}
+        </div>
+    </div>
+</div>
+
+
+{% endmacro %}
+
+{{ render_employee(worker, editor) }}

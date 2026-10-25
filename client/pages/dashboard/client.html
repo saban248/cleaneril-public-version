@@ -1,0 +1,75 @@
+<div class="client-card" id="the-client-card" data-ci="{{client.client_id}}">
+    <div class="type-clean-order" id="typeCleanOrder">
+        <div class="tco-header">
+            <i class="icon icon-64">
+                {% include "icon/order.svg" %}
+            </i>
+            <span>סוג הזמנה</span>
+        </div>
+        <div class="tco-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="tcoSearch" placeholder="חפש סוג הזמנה">
+        </div>
+        <div class="tco-body" id="tcoItems">
+        </div>
+    </div>
+</div>
+
+<div class="client-card" id="the-client-orders">
+    <div class="client-orders-head">
+        <span>הזמנות אחרונות</span>
+        <div class="client-orders-search">
+            <input type="text" class="input-orders-search" id="clientOrdersSearch" placeholder="תאריך, מזהה, מחיר">
+        </div>
+    </div>
+    <div class="client-orders-body">
+        <div class="cleaneril-list list-client-orders icon-empty-list" id="listClientOrders">
+        <i class="icon icon-64" id="iel-orders">
+            {% include "icon/empty-list.svg" %}
+        </i>
+        </div>
+    </div>
+
+</div>
+<div class="client-card" id="the-client-invoice">
+    <div class="receipt-img show" id="receiptImgTemplate">
+        <img alt="invoice" class="img-invoice" id="imgReceipt">
+        <i class="icon icon-64" id="before-load-receipt">
+            {% include "icon/document.svg" %}
+        </i>
+    </div>
+    <div class="edit-receipt-order" id="receiptEditTemplate">
+        <div class="box-loading"></div>
+    </div>
+</div>
+<div class="client-card" id="the-client-receipts">
+    <div class="client-receipts-head">
+        <span>קבלות אחרונות</span>
+        <div class="client-receipts-search">
+            <input type="text" class="input-receipts-search" id="clientReceiptsSearch" placeholder="תאריך, מזהה">
+        </div>
+    </div>
+    <div class="client-receipts-body">
+        <div class="cleaneril-list list-client-receipts icon-empty-list" id="listClientReceipts">
+        <i class="icon icon-64" id="iel-receipts">
+            {% include "icon/empty-list.svg" %}
+        </i>
+        </div>
+    </div>
+</div>
+<div id="receiptTemplate"></div>
+
+<div class="client-card" id="client-reports">
+    <div class="box-loading"></div>
+</div>
+
+
+<div class="client-card" id="uiShareOrderMarketplace">
+    <div class="client-report-empty">
+        <span>כאן אפשר לשתף עבודות לעסקים אחרים</span>
+        <i class="fa-solid fa-earth-africa" style="font-size: 25px;opacity: 0.7;"></i>
+    </div>
+</div>
+
+
+

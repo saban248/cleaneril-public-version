@@ -1,0 +1,19 @@
+
+.rubik-all, body{
+  font-family: "Google Sans" !important;
+  direction: rtl;
+}
+
+
+.mainClientView{
+    overflow: scroll;
+    position: relative;
+    align-items: center;
+    justify-content: start;
+
+}
+.mainClientView > #the-client-card{
+    transform: none !important;
+    min-height: auto !important;
+    flex: 1;
+}

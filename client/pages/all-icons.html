@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>All icons</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 24px;
+			font-family: sans-serif;
+		}
+
+		.icon-tools {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin-bottom: 24px;
+		}
+
+		#icon-search {
+			box-sizing: border-box;
+			width: min(100%, 360px);
+			padding: 10px 12px;
+			border: 1px solid #cbd5e1;
+			border-radius: 6px;
+			font: inherit;
+		}
+
+		#icon-count {
+			color: #64748b;
+			font-size: 14px;
+		}
+
+		.icons {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+			gap: 24px;
+		}
+
+		.icon-item {
+			display: grid;
+			justify-items: center;
+			gap: 8px;
+			text-align: center;
+		}
+
+		.icon {
+			display: inline-flex;
+			width: 64px;
+			height: 64px;
+		}
+
+		.icon svg {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<header class="icon-tools">
+		<input id="icon-search" type="search" placeholder="Search icons..." aria-label="Search icons">
+		<span id="icon-count" aria-live="polite"></span>
+	</header>
+	<main class="icons" id="icons"></main>
+
+	<script src="/static/js/all.js"></script>
+	<script>
+		const iconNames = {{ icon_names | tojson }};
+		const iconsContainer = document.getElementById("icons");
+		const searchInput = document.getElementById("icon-search");
+		const count = document.getElementById("icon-count");
+
+		function filterIcons() {
+			const query = searchInput.value.trim().toLowerCase();
+			let visibleCount = 0;
+
+			for (const item of iconsContainer.children) {
+				const matches = item.dataset.iconName.includes(query);
+				item.hidden = !matches;
+				if (matches) visibleCount++;
+			}
+
+			count.textContent = `${visibleCount} / ${iconNames.length} icons`;
+		}
+
+		async function renderIcons() {
+			const renderedIcons = await Promise.all(iconNames.map(async name => {
+				const figure = document.createElement("figure");
+				figure.className = "icon-item";
+				figure.dataset.iconName = name.toLowerCase();
+
+				const iconElement = document.createElement("i");
+				iconElement.className = "icon icon-64";
+				iconElement.title = name;
+				iconElement.innerHTML = await icon(name);
+
+				const caption = document.createElement("figcaption");
+				caption.textContent = name;
+				figure.append(iconElement, caption);
+				return figure;
+			}));
+
+			iconsContainer.replaceChildren(...renderedIcons);
+			filterIcons();
+		}
+
+		searchInput.addEventListener("input", filterIcons);
+		renderIcons();
+	</script>
+</body>
+</html>

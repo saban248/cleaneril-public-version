@@ -1,0 +1,59 @@
+<!-- Public order verification page. This page must be served outside the authenticated dashboard. -->
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#123f3a">
+    <title>אימות הזמנה | CleanerIL</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/static/css/pov.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+</head>
+<body>
+    <div class="page">
+        <header class="topbar">
+            <i class="icon icon-128">{% include 'icon/logo.svg' %}</i>
+            <div class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span></span></div>
+        </header>
+        <main>
+            <section class="verify-card" aria-labelledby="page-title" >
+                <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4.5 5v6.2c0 4.9 3.2 9.4 7.5 10.8 4.3-1.4 7.5-5.9 7.5-10.8V5L12 2Z"/><path d="m8.6 12 2.2 2.2 4.7-4.7"/></svg></div>
+                <h1 id="page-title">בדיקת מקור הזמנה</h1>
+                <form id="verify-form" novalidate>
+                    <label for="cleanOrderId">מזהה ההזמנה</label>
+                    <div class="input-row">
+                        <i class="fa-solid fa-circle-check tc-icon tci-2" id="orderIdVerified"></i>
+                        <input id="cleanOrderId" name="order_id" type="text" inputmode="text" autocomplete="off" maxlength="500" placeholder="example: 250-854c58c243f4085" required aria-describedby="order-hint">
+                        <button type="submit" id="verify-button">
+                            <span>אימות הזמנה</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="result" id="verify-result" role="status" aria-live="polite"></div>
+                <div class="infos">
+                    {% for about in abouts %}
+                        <div class="info">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <p>{{about}}</p>
+                        </div>
+                        {% endfor %}
+                </div>
+                <!-- <p class="support"><a href="/contact">צרו קשר עם השירות</a>.</p> -->
+            </section>
+        </main>
+        <footer>© <span id="year"></span> CleanerIL · מערכת אימות הזמנות</footer>
+    </div>
+    <script src="/static/js/pov.js"></script>
+    <script src="/static/js/protocol.js"></script>
+    <script src="/static/js/all.js"></script>
+    <script src="/static/js/msg.js"></script>
+</body>
+</html>

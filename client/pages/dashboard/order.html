@@ -1,0 +1,243 @@
+{% macro render_order_client(order, editor=False) %}
+
+<div class="client-head">
+    <div class="client-h-title">
+        <img src="/static/images/logo/{{company.logo_path}}">
+        <div class="dcompany">
+            {% if not editor %}
+                <span id="dc1">{{ order.order_type | tcot }}</span>
+            {% else %}
+                <span id="dc1" class="edit-order-type-btn" onclick="showSelectOrderTypeToCreate(true)">
+                    {{ order.order_type | tcot }}
+                </span>
+                    <div class="type-clean-order exist" id="typeCleanOrder">
+                        <div class="tco-header">
+                            <i class="icon icon-64">
+                                {% include "icon/order.svg" %}
+                            </i>
+                            <span>סוג הזמנה</span>
+                        </div>
+                        <div class="tco-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="tcoSearch" placeholder="חפש סוג הזמנה">
+                        </div>
+                        <div class="tco-body" id="tcoItems">
+                        </div>
+                    </div>
+            {% endif %}
+            <div class="cd-calls">
+                <div><i class="fa-solid fa-phone-flip" ></i>
+                    <span>{{company.company_phone}}</span>
+                </div>
+                <div><i class="fa-solid fa-envelope"></i>
+                    <span>{{company.company_email}}</span>
+                </div>
+            </div>
+            <span id="dc2">{{company.company_name}} • {{company.company_description}}</span>
+        </div>
+
+    </div>
+    <div class="client-details" id="clientOrderDetails">
+        <div class="cd-item">
+            <span>לכבוד</span>
+            {% if not editor %}
+                <span class="cd-name">{{order.fullname}}</span>
+            {%else%}
+                <input class="c-input-fn" type="text" id="fullname" placeholder="שם מלא" value="{{order.fullname}}" oninput="searchClientNewOrder(event)">
+                <div class="filter-options" id="mf-sc"></div>
+            {%endif%}
+        </div>
+        <div class="cd-item">
+            <span>לתאריך</span>
+            {% if not editor %}
+                <span class="cd-name">{{order.date | cda}}</span>
+            {%else%}
+                <input class="c-input-date" type="date" id="client-date" value="{{order.date|cdar}}">
+            {%endif%}
+        </div>
+        <div class="cd-item">
+            <span>שעות הגעה</span>
+            {% if not editor %}
+                <span class="cd-name">{{order.date | cdah}}</span>
+            {%else%}
+                <input class="c-input-date" type="time" id="client-time" step="3600" value="{{order.date | cdah}}">
+            {%endif%}
+        </div>
+        <div class="cd-item">
+            <span>בכתובת</span>
+            {% if not editor %}
+                <span class="cd-name">{{order.address}}</span>
+            {%else%}
+                <input class="c-input-location" type="text" id="client-location" placeholder="כתובת מלאה" value="{{order.address}}">
+            {%endif%}
+        </div>
+        <div class="cd-item">
+            <span>פאלפון</span>
+            {% if not editor %}
+                <span class="cd-name">{{order.phone}}</span>
+            {%else%}
+                <input class="c-input-fn" type="text" id="client-phone" placeholder="מספר נייד" value="{{order.phone}}">
+            {%endif%}
+        </div>
+    </div>
+</div>
+<div class="show-progress" id="clientProgressPublish">
+    <i id="cpp-icon"></i>
+    <div class="details-progress">
+        <span class="cpp-title" id="cpp-title">שומר את ההזמנה</span>
+        <span id="cpp-fn"></span>
+        <span id="cpp-stat">סוג הזמנה:
+            <span></span>
+        </span>
+    </div>
+</div>
+<div class="client-body" id="clientOrderBody">
+    <div class="clean-items">
+        <div class="ci-head">
+            <span>פריטים שהוזמנו</span>
+            {% if editor%}
+                <div class="cih-action">
+                    <button class="ci-add-item" type="button" onclick="addItemClientOrder()" aria-label="הוספת פריט" title="הוספת פריט">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>הוספת פריט</span>
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+        <div class="ci-body">
+            <div class="items-ordered" >
+                <div class="header ordered">
+                    <span>שם</span>
+                    <span>מחיר</span>
+                </div>
+                <div id="items-ordered">
+                    {% for k,v in order.items.items() %}
+                        <div class="ordered" id="{{k}}">
+                            <span class="s-item-name" id="{{k}}-name">{{v.name}}</span>
+                            <span class="s-item-price" id="{{k}}-price">{{v.price}}₪</span>
+                            {% if editor %}
+                                <i class= "fa-solid fa-trash-can trash-order" onclick="deleteItemOrder('{{k}}')"></i>
+                            {%endif%}
+                        </div>
+                    {%endfor%}
+                    {% if not editor %}
+                        <div class="ordered osummary" id="summary">
+                            <span class="s-item-name" id="{{k}}-name">סיכום</span>
+                            <span class="s-item-price" id="{{k}}-price">{{order.items.items()|length}} פריטים</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="ci-notes">
+        <span>הערות</span>
+        <div class="notes-content">
+            <textarea class="c-input-notes {% if not editor %}dis-notes{% endif %}" placeholder="הכנס הערות..." id="client-notes">{{order.notes}}</textarea>
+        </div>
+    </div>
+    <div class="prices{% if order.off%} price-off-price{%endif%}{% if editor %} editor-prices{% endif %}">
+        <div class="{% if not editor %} m-price{%endif%}">                         
+            {% if not editor %}
+                {% set priceAllVat = (order.price-order.off_price)|vatop%}
+                {% set priceAllNoVat = (order.price-order.off_price)%}
+                {% if order.off%}
+                    <span class="price-all">{% if order.vat%}{{priceAllVat}}{%else%}{{priceAllNoVat}}{%endif%}<span style="color: #6e6e6e;font-size: 1.1rem;">₪</span></span>
+                {%endif%}
+                <span class="price-all {% if order.off%}price-all-off{%endif%}">
+                    {% if not order.vat %}
+                        {{order.price}}
+                    {%else%}
+                        {{order.price|vatop}}
+                    {% endif %}
+                    <span id='spnprice' style="color: #6e6e6e;font-size: 1.1rem;">₪</span></span>
+                {% if order.vat%}
+                <span class="p-vat">כולל מע"מ</span> 
+                {% endif%}
+
+            {%else%}
+                <div class="off-price">
+                    <span>מחיר סופי (לפני הנחה / הוצאות)</span>
+                    <input type="tel" class="c-input-fn price-all" placeholder="0.00" id="client-price" value="{{order.price | int}}">
+                </div>
+            {%endif%}
+        </div> 
+        {% if editor %}
+        <div class="off-price">
+            <span>הנחה</span>
+            <input type="tel" class="c-input-fn price-all" placeholder="0.00" id="client-off-price" value="{{order.off_price|int}}">
+        </div>
+        <div class="off-price">
+            <span>הוצאות דלק / פרסום</span>
+            <input type="tel" class="c-input-fn price-all" placeholder="0.00" id="client-expense" value="{{order.expense}}">
+        </div>
+        <div class="off-price psharing" id="psharing">
+            <span>תשלום לקבלן באחוזים (ספציפית על עיסקה זו)</span>
+            <input class="c-input-fn price-all" type="tel" id="profitSharing" value="{{order.profit_sharing}}">
+        </div>
+        {% if company.vat_company%}
+        <div class="off-price">
+            <span>הוסף מע"מ</span>
+            <input class="checkbox" type="checkbox" id="client-vat" onclick="compareVatOfPrice(this)">
+        </div>
+        {% endif %}
+        {%endif%}          
+    </div>
+    {% if editor %}
+    <div class="prices{% if order.off%} price-off-price{%endif%}{% if editor %} editor-prices{% endif %}">
+        <div class="off-price">
+            <span>קבלן / עובד שמבצע מטעמך</span>
+            <div class="worker-select" id="pws">
+                <div class="employee-selected-main" id="esm">
+                </div>
+                <input type="text" class="c-input-fw price-all" placeholder="חפש עובד" id="client-worker" autocomplete="off" oninput="onSearchWorker()">
+                <div class="worker-dropdown" id="worker-dropdown" style="display: none;"></div>
+                <input type="hidden" id="lsw{{order.worker}}">
+
+            </div>
+        </div>
+        <div class="off-price">
+            <span>סוג תשלום</span>
+            <div class="pay-group" id="payGroup" data-tp="2">
+                <button data-tp="1">
+                    <span>העברה</span>
+                </button>
+                <button data-tp="2" id="tp-default">
+                    <span>מזומן</span>
+                </button>
+                <button data-tp="4">
+                    <span>צ'ק</span>
+                </button>
+                <button data-tp="8">
+                    <span>אחר</span>
+                </button>
+                <div class="indicator"></div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if not editor %}
+    <div class="price-notes">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>
+        ניתן לשלם בהעברה בנקאית / ביט / פייבוקס / מזומן<br>
+        בכל אופן אחר נא לתאם מראש
+    </span>
+    </div>
+    {% endif %}
+</div>
+<div class="footer-time-signature {% if editor %} disable {%endif%}">
+    <span>{% include "icon/verify.svg" %}</span> {{order.timestamp_entered|ctime}} • {{order.key}}-{{order.order_id}}
+</div>
+<div class="client-footer {% if not editor %} disable {%endif%}">
+    <div class="card-action-editor" id="beforeProgressDone">
+
+    </div>
+    <div class="card-action-editor-saved" id="afterProgressDone">
+        <i class="fa-solid fa-eye" onclick="showClientOrder('{{order.order_id}}')"></i>
+    </div>
+</div>
+
+{% endmacro %}
+{{ render_order_client(order, editor) }}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>{{company_name}}</title>
+    <link rel="stylesheet" href="/static/css/manager.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/clients.css">
+    <link rel="stylesheet" href="/static/css/settings.css">
+    <link rel="stylesheet" href="/static/css/workers.css">
+    <link rel="stylesheet" href="/static/css/calendar.css">
+    <link rel="stylesheet" href="/static/css/all.css">
+    <link rel="stylesheet" href="/static/css/invoices.css">
+    <link rel="stylesheet" href="/static/css/reports.css">
+    <link rel="stylesheet" href="/static/css/subscription.css">
+    <link rel="stylesheet" href="/static/css/sub-dashboard.css">
+    <link rel="stylesheet" href="/static/css/marketplace/general.css">
+    <link rel="stylesheet" href="/static/css/marketplace/marketplace.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- fonts  :: GOOGLE -->
+    <link href="https://fonts.googleapis.com/css2?family=BJ+Cree:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+
+</head>
+
+<body>
+    <div class="dashbord-page">
+        {% set cards = cards %}
+        {% set clients = clients%}
+        {% set managerId = manager.manager_id %}
+        {% include "dashboard/cards.html" %}
+        {% include "dashboard/links.html" %}
+        {% include "dashboard/gifts.html" %}
+        {% include "dashboard/clients.html" %}
+        {% include "dashboard/funds.html" %}
+        {% include "dashboard/settings.html" %}
+        {% include "dashboard/workers.html" %}
+        {% include "dashboard/calendar.html" %}
+        {% include "dashboard/invoice/invoices.html" %}
+        {% include "dashboard/subscription/subscription.html" %}
+        {% include "dashboard/marketplace/marketplace.html" %}
+
+    </div>
+        <div class="dashboard-menu">
+        <div class="menu-items">
+            <div class="menu-item master" id="menuMaster">
+
+                <i id="mtdasboard-open" class="icon " style="width: 32px;" onclick="openMenuTabsDashboard(this)">
+                    {% include "icon/menu.svg" %}
+                </i>
+                <i id="mtdasboard-close" class="icon " style="width: 32px; display: none;" onclick="closeMenuTabsDashboard(this)">
+                    {% include "icon/close.svg" %}
+                </i>
+                <div id="generalMenu" class="menu-master"></div>
+            </div>
+            <div class="menu-item icon-marketplace" onclick="switchPageManager(PageManager.MARKETPLACE)">
+                <i class="icon icon-24">
+                    {% include "icon/globe-destination.svg" %}
+                </i>
+            </div>
+            <div class="menu-item" onclick="switchPageManager(PageManager.CLIENTS)">
+                <i class="icon icon-24">
+                    {% include "icon/clients.svg" %}
+                </i>
+            </div>
+            <div class="menu-item"  onclick="switchPageManager(PageManager.CALENDAR)">
+                <i class="icon icon-24">
+                    {% include "icon/calendar.svg" %}
+                </i>
+            </div>
+            <div class="menu-item" onclick="switchPageManager(PageManager.FUNDS)">
+                <i class="icon icon-24">
+                    {% include "icon/funds.svg" %}
+                </i>
+            </div>
+            <div class="menu-item"  onclick="switchPageManager(PageManager.SETTINGS)">
+                <i class="icon icon-24">
+                    {% include "icon/settings.svg" %}
+                </i>
+            </div>
+        </div>
+    </div>
+    <div id="toast-container">
+    </div>
+    <div id="confirmModal" class="modal hide">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span id="modalTitle">Confirm Action</span>
+                </div>
+
+                <div class="modal-body">
+                <p id="modalMessage">Are you sure?</p>
+                </div>
+
+                <div class="modal-actions">
+                <button id="btnCancel" class="btn cancel">ביטול</button>
+                <button id="btnConfirm" class="btn confirm">המשך</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/js/all.js" defer></script>
+<script src="/static/js/main-loader.js" defer></script>
+<script src="/static/js/protocol.js"></script>
+<script src="/static/js/app-state.js"></script>
+<script src="/static/js/client-store.js"></script>
+<script src="/static/js/client-api.js"></script>
+<script src="/static/js/image-upload.js"></script>
+<script src="/static/js/manager.js"></script>
+<script src="/static/js/auth.js"></script>
+<script src="/static/js/manager-dashboard.js"></script>
+<script src="/static/js/cache.js"></script>
+<script src="/static/js/clients.js"></script>
+<script src="/static/js/funds.js"></script>
+<script src="/static/js/settings.js"></script>
+<script src="/static/js/workers.js"></script>
+<script src="/static/js/calendar.js"></script>
+<script src="/static/js/invoices.js"></script>
+<script src="/static/js/msg.js"></script>
+<script src="/static/js/clients/listOrders.js"></script>
+
+<script src="/static/js/client-dashboard/client-dashboard.js"></script>
+<script src="/static/js/client-dashboard/orders.js"></script>
+<script src="/static/js/client-dashboard/order.js"></script>
+<script src="/static/js/client-dashboard/dashboard.js"></script>
+<script src="/static/js/client-dashboard/invoice.js"></script>
+<script src="/static/js/client-dashboard/reports.js"></script>
+<script src="/static/js/client-dashboard/shareToMarketplace.js"></script>
+<script src="/static/js/clients/timeline.js"></script>
+<script src="/static/js/reports.js"></script>
+<script src="/static/js/cleaneril-chart.js"></script>
+<script src="/static/js/subscription.js"></script>
+<script src="/static/js/sub-dashboard.js"></script>
+<script src="/static/js/products.js"></script>
+<script src="/static/js/shareFromApp.js"></script>
+<script src="/static/js/events.js"></script>
+
+
+<script src="/static/js/marketplace/components/liveShareJob.js"></script>
+<script src="/static/js/marketplace/components/liveMapShareJob.js"></script>
+<script src="/static/js/marketplace/components/liveTransactions.js"></script>
+<script src="/static/js/marketplace/components/helper.js"></script>
+<script src="/static/js/marketplace/api.js"></script>
+<script src="/static/js/marketplace/marketplace.js"></script>
+<script src="/static/js/marketplace/protocol.js"></script>
+
+
+</html>

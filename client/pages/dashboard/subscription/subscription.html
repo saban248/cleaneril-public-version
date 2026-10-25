@@ -1,0 +1,129 @@
+<div class="dashboard-page" id="SUBSCRIPTIONS">
+    <div class="page-head">
+        <h2>ניהול מינויים</h2>
+    </div>
+    <div class="page-body">
+        <div id="mas" class="menu-actions-subscriptions">
+            <div class="filter-item">
+                <span class="filter-label">
+                    <i class="fa-solid fa-filter"></i>
+                    מנוי 
+                </span>
+                <span class="viewFilterSelected" id="viewSubscriptionStat" onclick="switchFilterOptions('mf-ss')">הכל</span>
+                <div class="filter-options" id="mf-ss">
+                    <div class="filter-option" onclick="selectSubscriptionState('mf-ss', this)" data-s="0">
+                        <span>הכל</span>
+                        </div>
+                    <div class="filter-option" onclick="selectSubscriptionState('mf-ss', this)" data-s="1"> 
+                        <i class="fa-solid fa-toggle-on"></i>
+                        <span>פעיל</span>
+                    </div>
+                    <div class="filter-option" onclick="selectSubscriptionState('mf-ss', this)" data-s="2"> 
+                        <i class="fa-solid fa-toggle-off"></i>
+                        <span>לא פעיל</span>
+                    </div>
+                    <div class="filter-option" onclick="selectSubscriptionState('mf-ss', this)" data-s="4"> 
+                        <i class="fa-solid fa-hourglass-end"></i>
+                        <span>פג בתוקף</span>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-item">
+                <span class="filter-label">
+                    <i class="fa-solid fa-filter"></i>
+                    סוג 
+                </span>
+                <span class="viewFilterSelected" id="viewSubscriptionType" onclick="switchFilterOptions('mf-st')">הכל</span>
+                <div class="filter-options" id="mf-st">
+                    <div class="filter-option" onclick="selectSubscriptionType('mf-st', this)" data-s="0">הכל</div>
+                    <div class="filter-option" onclick="selectSubscriptionType('mf-st', this)" data-s="1">
+                        <i class="fa-solid fa-circle-half-stroke"></i>
+                        <span>חודשי</span>
+                    </div>
+                    <div class="filter-option" onclick="selectSubscriptionType('mf-st', this)" data-s="2">
+                        <i class="fa-solid fa-circle"></i>
+                        <span>שנתי</span>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-item">
+                <span class="filter-label">
+                    <i class="fa-solid fa-sliders"></i>
+                    סדר 
+                </span>
+                <span class="viewFilterSelected" id="viewSubscriptionOrder" onclick="switchFilterOptions('mf-so')">חדש</span>
+                <div class="filter-options" id="mf-so">
+                    <div class="filter-option" onclick="selectSubscriptionOrder('mf-so', this)" data-s="1">
+                        <i class="fa-solid fa-arrow-down-9-1"></i>
+                        <span>חדש</span>
+                    </div>
+                    <div class="filter-option" onclick="selectSubscriptionOrder('mf-so', this)" data-s="2">
+                        <i class="fa-solid fa-arrow-down-1-9"></i>
+                        <span>ישן</span>
+                    </div>
+                    <div class="filter-option" onclick="selectSubscriptionOrder('mf-so', this)" data-s="4">
+                        <i class="fa-solid fa-circle"></i>
+                        <span>בהתמנה</span>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-item">
+                <span class="filter-label">
+                    <i class="fa-solid fa-user"></i>
+                    מצב חשבון
+                </span>
+                <span class="viewFilterSelected" id="viewSubscriptionAccount" onclick="switchFilterOptions('mf-sa')">הכל</span>
+                <div class="filter-options" id="mf-sa">
+                    <div class="filter-option" onclick="selectSubscriptionAccountState('mf-sa', this)" data-s="0">הכל</div>
+                    <div class="filter-option" onclick="selectSubscriptionAccountState('mf-sa', this)" data-s="1">
+                        <i class="fa-solid fa-toggle-on"></i>
+                        <span>פעיל</span>
+                    </div>
+                    <div class="filter-option" onclick="selectSubscriptionAccountState('mf-sa', this)" data-s="4">
+                        <i class="fa-solid fa-circle-pause"></i>
+                        <span>מושהה</span>
+                    </div>
+                    <div class="filter-option" onclick="selectSubscriptionAccountState('mf-sa', this)" data-s="8">
+                        <i class="fa-solid fa-ban"></i>
+                        <span>חסום</span>
+                    </div>
+                    <div class="filter-option" onclick="selectSubscriptionAccountState('mf-sa', this)" data-s="2">
+                        <i class="fa-solid fa-hourglass-start"></i>
+                        <span>ממתין</span>
+                    </div>
+                </div>
+            </div>
+            <div class="action-search">
+                <i class="fa-solid fa-circle-xmark" style="display: none;" onclick="closeSearchManager(this)"></i>
+                <i class="fa-solid fa-magnifying-glass" onclick="openSearchInput('searchManager', this)"></i>
+                <input class="c-input-fn seacrh-input" type="text" placeholder="שם, פאלפון, מס עוסק" id="searchManager" oninput="doSearchManagersLocal(this)">
+            </div>
+        </div>
+        <div class="subscriptions-table-wrap">
+            <table class="subscriptions-table">
+                <thead>
+                    <tr>
+                        <th>סטטוס חיבור</th>
+                        <th>שם מלא</th>
+                        <th>שם עסק</th>
+                        <th>הרשאות</th>
+                        <th>מאומת</th>
+                        <th>הרשמה</th>
+                        <th>חשבון</th>
+                        <th>מסלול</th>
+                    </tr>
+                </thead>
+                <tbody id="subscriptionsTableBody">
+                    <tr class="subscriptions-empty-row">
+                        <td colspan="8">אין מנויים להצגה</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="subscriptionMenu" class="client-menu-action"></div>
+        
+    </div>
+</div>
+<div class="manager-dashboard" id="managerTemplate">
+    
+</div>

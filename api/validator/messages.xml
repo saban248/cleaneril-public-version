@@ -1,0 +1,103 @@
+<messages>
+    <msg code="0" lang="en"></msg>
+    <msg code="0" lang="he">הושלם בהצלחה</msg>
+
+    <msg code="1" lang="en"></msg>
+    <msg code="1" lang="he">שם המשתמש להתחברות לא תקין</msg>
+
+    <msg code="2" lang="en"></msg>
+    <msg code="2" lang="he">שם העסק חייב להיות 2 מילים</msg>
+
+    <msg code="3" lang="en"></msg>
+    <msg code="3" lang="he">שם העסק קיים, צור אחר</msg>
+
+    <msg code="4" lang="en"></msg>
+    <msg code="4" lang="he">מספר הפלאפון לא תקין</msg>
+
+    <msg code="5" lang="en"></msg>
+    <msg code="5" lang="he">תיאור העסק לא תקין</msg>
+
+    <msg code="6" lang="en"></msg>
+    <msg code="6" lang="he">הסיסמה לא תקינה, באורך ובתווים</msg>
+
+    <msg code="7" lang="en"></msg>
+    <msg code="7" lang="he">לא ניתן כרגע להמשיך</msg>
+
+    <msg code="8" lang="en"></msg>
+    <msg code="8" lang="he">שם בעל העסק לא תקין</msg>
+
+    <msg code="9" lang="en"></msg>
+    <msg code="9" lang="he">קיימת קבלה עבור הזמנה זו</msg>
+
+    <msg code="10" lang="en"></msg>
+    <msg code="10" lang="he">הפעולה נכשלה</msg>
+
+    <msg code="11" lang="en"></msg>
+    <msg code="11" lang="he">אין הרשאות מתאימות לפעולה זו</msg>
+
+    <msg code="12" lang="en"></msg>
+    <msg code="12" lang="he">בעיה ביצירת הקבלה</msg>
+
+    <msg code="13" lang="en"></msg>
+    <msg code="13" lang="he">ת.ז \ מספר עוסק לא תקין</msg>
+
+    <msg code="14" lang="en"></msg>
+    <msg code="14" lang="he">ההרשמה לא הסתיימה, מעביר אותך להרשמה...</msg>
+
+    <msg code="15" lang="en"></msg>
+    <msg code="15" lang="he">ההזמנה קיימת במערכת</msg>
+
+    <msg code="16" lang="en"></msg>
+    <msg code="16" lang="he">בעיה ביצירת הזמנה עבור הלקוח</msg>
+
+    <msg code="17" lang="en"></msg>
+    <msg code="17" lang="he">בעיה ביצירת העתק של ההזמנה שנבחרה</msg>
+
+    <msg code="18" lang="en"></msg>
+    <msg code="18" lang="he">חיבור לספק זה כבר קיים במערכת</msg>
+
+    <msg code="19" lang="en"></msg>
+    <msg code="19" lang="he">קוד אימות לא תואם</msg>
+
+    <msg code="20" lang="en"></msg>
+    <msg code="20" lang="he">פעולת האימות כבר הושלמה</msg>
+
+    <msg code="21" lang="en"></msg>
+    <msg code="21" lang="he">הגעת למקסימום בקשות אימות, אנא המתן {min} דקות</msg>
+
+    <msg code="22" lang="en"></msg>
+    <msg code="22" lang="he">העברת העבודה מתאפשרת אחרי שהלקוח נסגר ובמצב המתנה</msg>
+
+    <msg code="23" lang="en"></msg>
+    <msg code="23" lang="he">ההזמנה ללא פריטים, לא ניתן לשתף הזמנה</msg>
+
+    <msg code="24" lang="en"></msg>
+    <msg code="24" lang="he">ההזמנה מקושרת לפרטי לקוח שלא קיים</msg>
+
+    <msg code="25" lang="en"></msg>
+    <msg code="25" lang="he">הזמנה עם פרטים שגויים: מחיר</msg>
+
+    <msg code="26" lang="en"></msg>
+    <msg code="26" lang="he">העבודה משותפת כבר בשוק</msg>
+
+    <msg code="27" lang="en"></msg>
+    <msg code="27" lang="he">כבר במצב 'מושעה'</msg>
+
+    <msg code="28" lang="en"></msg>
+    <msg code="28" lang="he">תאריך ביצוע העבודה עבר</msg>
+
+    <msg code="29" lang="en"></msg>
+    <msg code="29" lang="he">בזמן שיתוף בשוק, לא ניתן לערוך הזמנה</msg>
+
+    <msg code="30" lang="en"></msg>
+    <msg code="30" lang="he">העבודה לא זמינה</msg>
+
+    <msg code="31" lang="en"></msg>
+    <msg code="31" lang="he">בחרת סכום / ערך לא תקין</msg>
+
+    <msg code="32" lang="en"></msg>
+    <msg code="32" lang="he">עבודה זו בבעלות נוספת</msg>
+
+    <msg code="33" lang="en"></msg>
+    <msg code="33" lang="he">בקשה לקבלת עבודה לא קיימת</msg>
+</messages>

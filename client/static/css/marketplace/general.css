@@ -1,0 +1,21 @@
+
+
+
+.icon-marketplace {
+    transform-origin: top center;
+    position: relative;
+    animation: bell-ring 0.8s ease-in-out 10;
+    border: 1px solid #b5b5b5;
+}
+
+@keyframes bell-ring {
+    0%   { transform: rotate(0); }
+    10%  { transform: rotate(12deg); }
+    20%  { transform: rotate(-10deg); }
+    30%  { transform: rotate(8deg); }
+    40%  { transform: rotate(-8deg); }
+    50%  { transform: rotate(2deg); }
+    60%  { transform: rotate(-2deg); }
+    70%  { transform: rotate(0); }
+    100% { transform: rotate(0); }
+}

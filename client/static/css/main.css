@@ -1,0 +1,53 @@
+
+
+body{
+    font-family: 'Google Sans';
+    padding: 5px;
+}
+
+.cil-head{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.cil-head > i{
+    margin-left: 15px;
+
+}
+
+.cil-head-menu{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+
+    
+}
+
+.chm-item{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    border-radius: 5px;
+    height: 30px;
+    padding: 5px 10px;
+    transition: all 300ms;
+    cursor: pointer;
+    font-size: 12px;
+    
+}
+.chm-item.login:hover{
+    outline: 1px solid rgba(13, 9, 9, 0.563);
+    box-shadow: 0 4px 11px rgba(39, 12, 73, 0.26);
+}
+.chm-item:hover{
+    outline: 1px solid rgba(121, 42, 225, 0.105);
+    
+}
+.chm-item > span{
+    flex: 1;
+
+}
+.chm-item.login{
+    background-color: rgba(121, 42, 225, 0.105);
+    border-radius: 9px;
+}

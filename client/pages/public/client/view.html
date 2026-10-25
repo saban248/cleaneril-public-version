@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="/static/css/manager.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/clients.css">
+    <link rel="stylesheet" href="/static/css/pov.css">
+    <link rel="stylesheet" href="/static/css/all.css">
+    <link rel="stylesheet" href="/static/css/public/client/view.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <title>פרטי הזמנה | Cleaneril</title>
+    <meta name="description" content="צפייה בפרטי ההזמנה שלך ב-Cleaneril">
+    <meta name="robots" content="noindex, nofollow, max-image-preview:large">
+    <meta property="og:title" content="פרטי הזמנה | Cleaneril">
+    <meta property="og:description" content="צפייה בפרטי ההזמנה שלך ב-Cleaneril">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cleaneril">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:image" content="{{ url_for('static', filename='images/logo.png') }}">
+    <meta property="og:image:alt" content="Cleaneril">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="פרטי הזמנה | Cleaneril">
+    <meta name="twitter:description" content="צפייה בפרטי ההזמנה שלך ב-Cleaneril">
+    <meta name="twitter:image" content="{{ url_for('static', filename='images/logo.png') }}">
+</head>
+<body>
+    <section class="page mainClientView">
+        <header class="topbar">
+            <i class="icon icon-128">{% include 'icon/logo.svg' %}</i>
+            <div class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span></span></div>
+        </header>
+        <div class="client-card show" id="the-client-card">
+             <div class="box-loading"></div>
+        </div>
+    </section>
+    <div id="toast-container"></div>
+</body>
+<script src="/static/js/protocol.js"></script>
+<script src="/static/js/all.js"></script>
+<script src="/static/js/msg.js"></script>
+<script src="/static/js/public/client/view.js"></script>
+
+</html>

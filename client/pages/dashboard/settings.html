@@ -1,0 +1,208 @@
+<div class="dashboard-page" id="SETTINGS">
+    <div class="page-head">
+        <h2>הגדרות מערכת</h2>
+    </div>
+    <div class="page-body settings-container">
+        <!-- Profile Section -->
+        <div class="settings-profile-section">
+            <div class="settings-avatar-wrapper">
+                <img class="settings-profile-avatar" src="/static/images/logo/{{company.logo_path}}" alt="company logo" id="logoView">
+                <span class="settings-plan-badge" id="logoCompanyTag">מעדכן..</span>
+            </div>
+            <div class="settings-profile-info">
+                <h3  class="settings-profile-name">
+                    <span id="nameCompanyView">{{company.company_name}}</span>
+                    <span id="companyVerified" class="icon icon-16">{% include "/icon/verify.svg" %}</span>
+                    <span id="companyUnverified"><i class="fa-solid fa-clock"></i></span>
+                </h3>
+                <p id="descCompanyView" class="settings-profile-desc">{{company.company_description}}</p>
+            </div>
+            <i class="fa-solid fa-image settings-edit-logo" onclick="setLogo()"></i>
+            <input type="file" id="setLogo" accept="image/*" style="display:none">
+        </div>
+
+        <!-- Main Settings List -->
+        <div class="settings-list">
+            <!-- Company Branding Section -->
+            <div class="settings-section">
+                <h4 class="settings-section-title">מידע העסק</h4>
+                
+                <!-- Company Name -->
+                <div class="settings-item" onclick="editCompanyName()">
+                    <div class="settings-item-left">
+                        <i class="fa-solid fa-briefcase settings-item-icon"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">שם העסק</span>
+                            <span class="settings-value">{{company.company_name}}</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                </div>
+
+                <!-- Company Description -->
+                <div class="settings-item" onclick="editCompanyDesciption()">
+                    <div class="settings-item-left">
+                        <i class="fa-solid fa-file-text settings-item-icon"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">תיאור העסק</span>
+                            <span class="settings-value">{{company.company_description}}</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                </div>
+
+                <!-- Company Phone -->
+                <div class="settings-item" onclick="editCompanyPhone()">
+                    <div class="settings-item-left">
+                        <i class="fa-solid fa-phone settings-item-icon"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">טלפון</span>
+                            <span class="settings-value" id="phoneCompanyView">{{company.company_phone}}</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                </div>
+
+                <!-- Company Email -->
+                <div class="settings-item" onclick="editCompanyEMail()">
+                    <div class="settings-item-left">
+                        <i class="fa-solid fa-envelope settings-item-icon"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">אימייל</span>
+                            <span class="settings-value" id="emailCompanyView">{{company.company_email}}</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                </div>
+
+                <!-- VAT Number -->
+                <div class="settings-item" onclick="editCompanyVAT()">
+                    <div class="settings-item-left">
+                        <i class="fa-solid fa-receipt settings-item-icon"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">מספר עוסק</span>
+                            <span class="settings-value" id="VATCompanyView">{{company.company_VAT}}</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                </div>
+
+                <!-- Tax Status -->
+                <div class="settings-item" onclick="editVATOrNot()">
+                    <div class="settings-item-left">
+                        <i class="fa-solid fa-landmark settings-item-icon"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">סוג עוסק</span>
+                            <span class="settings-value" id="taxTypeView"></span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                </div>
+            </div>
+
+            <!-- Employee Management Section -->
+            <div class="settings-section">
+                <h4 class="settings-section-title">עובדים</h4>
+
+                <!-- Profit Share -->
+                <div class="settings-item" onclick="editCompanyGPSE(this)">
+                    <div class="settings-item-left">
+                        <i class="fa-solid fa-percent settings-item-icon"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">חלוקת רווח בעיסקה</span>
+                            <span class="settings-value" id="GPSECompanyView">{{company.gpse or 50}}%</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                    <input placeholder="{{company.gpse or 50}}%" value="{{company.gpse or 50}}" class="input-setting input-desc-company" type="hidden" maxlength="30" id="GPSECompany">
+                </div>
+            </div>
+
+            <!-- Order Settings Section -->
+            <div class="settings-section">
+                <h4 class="settings-section-title">הזמנות</h4>
+
+                <!-- Show Company ID on Orders -->
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <i class="fa-solid fa-id-card settings-item-icon"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">הצג מספר עוסק בהזמנות</span>
+                            <span class="settings-value" id="showVatCodeView"></span>
+                        </div>
+                    </div>
+                    <div class="settings-toggle-switch">
+                        <input type="checkbox" id="showVatCodeOnOrder" class="toggle-input" checked onchange="editShowVatCodeOnOrder()">
+                        <label for="showVatCodeOnOrder" class="toggle-label"></label>
+                    </div>
+                </div>
+            </div>
+            <!-- integrations app  -->
+            <div class="settings-section">
+                <h4 class="settings-section-title">אינטגרציות</h4>
+
+                <!-- Meta Integration -->
+                <div class="settings-item" onclick="editMetaIntegration()">
+                    <div class="settings-item-left">
+                        <i class="fa-brands fa-meta settings-item-icon meta"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">Meta</span>
+                            <span class="settings-value" id="metaIntegrationView">
+                            לא מחובר 
+                            </span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                </div>
+
+                <!-- Google Calendar Integration -->
+                <div class="settings-item" onclick="editGoogleCalendarIntegration()">
+                    <div class="settings-item-left">
+                        <i class="fa-brands fa-google settings-item-icon google"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">Google Calendar</span>
+                            <span class="settings-value" id="googleCalendarIntegrationView">
+                                לא מחובר
+                            </span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                </div>
+                <!-- google ADs -->
+                <div class="settings-item" onclick="editGoogleAdsIntegration()">
+                    <div class="settings-item-left">
+                        <i class="fa-brands fa-google settings-item-icon google"></i>
+                        <div class="settings-item-text">
+                            <span class="settings-label">Ads Google</span>
+                            <span class="settings-value" id="googleAdsIntegrationView">
+                                לא מחובר
+                            </span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left settings-chevron"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="settings-edit-modal" id="settingsEditModal">
+    <div class="settings-modal-overlay"></div>
+    <div class="settings-modal-content">
+        <div class="settings-modal-header">
+            <h5 id="emsTitle">${title}</h5>
+            <i class="fa-solid fa-times" onclick="closeEditModal()"></i>
+        </div>
+        <div id="settingsContentModal"></div>
+        <div id="settingsDefaultContentModal">
+            <input type="text" class="settings-modal-input" value="${currentValue}" id="emsCurrentValue" autocomplete="off">
+        </div>
+        <input type="hidden" class="settings-modal-input" id="emsLastValue" autocomplete="off">
+        <div class="settings-modal-footer">
+            <button class="settings-btn-cancel" onclick="closeEditModal()">ביטול</button>
+            <button class="settings-btn-save" id="emsSave">שמור</button>
+        </div>
+    </div>
+</div>
+
+
+
